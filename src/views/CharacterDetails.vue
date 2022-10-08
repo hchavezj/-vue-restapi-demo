@@ -17,42 +17,44 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <main
-    class="min-h-screen bg-gradient-to-r from-fuchsia-900 to-red-700 py-8 text-white"
-  >
+  <main class="min-h-screen bg-slate-900 py-8 text-white">
     <div
       v-if="currentCharacter"
       class="flex flex-col items-center justify-center gap-6"
     >
       <img :src="currentCharacter.imageUrl" :alt="currentCharacter.name" />
+
       <h1 class="text-white-800 text-6xl font-bold">
-        Hi, I'm {{ currentCharacter.name }}
+        <p>Hi, I'm {{ currentCharacter.name }}</p>
+        <p>I've appeared in</p>
       </h1>
-      <ul v-if="currentCharacter.films.length > 0">
-        <li>Films</li>
-        <li v-for="films in currentCharacter.films" :key="films.id">
-          {{ films }}
-        </li>
-      </ul>
-      <h1 v-else>No Films</h1>
-      <ul v-if="currentCharacter.shortFilms.length > 0">
-        <li>Short Films</li>
-        <li
-          v-for="shortFilms in currentCharacter.shortFilms"
-          :key="shortFilms.id"
-        >
-          {{ shortFilms }}
-        </li>
-      </ul>
-      <h1 v-else>No Short Films</h1>
-      <ul v-if="currentCharacter.tvShows.length > 0">
-        <li text-center>TV Shows</li>
-        <li v-for="tvShows in currentCharacter.tvShows" :key="tvShows.id">
-          {{ tvShows }}
-        </li>
-      </ul>
-      <h1 v-else>No TV Shows</h1>
-      <pre>{{ currentCharacter }}</pre>
+
+      <div class="border p-5 pt-0">
+        <ul v-if="currentCharacter.films.length" class="pt-3">
+          <li>[ Films ]</li>
+          <li v-for="films in currentCharacter.films" :key="films.id">
+            {{ films }}
+          </li>
+        </ul>
+
+        <ul v-if="currentCharacter.shortFilms.length" class="pt-3">
+          <li>[ Short Films ]</li>
+          <li
+            v-for="shortFilms in currentCharacter.shortFilms"
+            :key="shortFilms.id"
+          >
+            {{ shortFilms }}
+          </li>
+        </ul>
+
+        <ul v-if="currentCharacter.tvShows.length" class="pt-3">
+          <li>[ TV Shows ]</li>
+          <li v-for="tvShows in currentCharacter.tvShows" :key="tvShows.id">
+            {{ tvShows }}
+          </li>
+        </ul>
+      </div>
+      <!--<pre>{{ currentCharacter }}</pre>-->
     </div>
   </main>
 </template>
